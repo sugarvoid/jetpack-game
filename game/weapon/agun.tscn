@@ -5,8 +5,9 @@
 [node name="agun" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.45676, 1.6223)
 texture = ExtResource("1_8xphm")
-offset = Vector2(2, -1)
+offset = Vector2(4, -1)
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(4.08839, -1.50282)
+position = Vector2(10.71, -0.873763)
