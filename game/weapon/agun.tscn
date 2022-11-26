@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c30r8diwg4d66"]
+[gd_scene load_steps=3 format=3 uid="uid://c30r8diwg4d66"]
 
 [ext_resource type="Texture2D" uid="uid://bekpwoggywuox" path="res://game/weapon/a_gun.png" id="1_8xphm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0s1h"]
+size = Vector2(71, 7)
 
 [node name="agun" type="Node2D"]
 
@@ -11,3 +14,15 @@ offset = Vector2(4, -1)
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(10.71, -0.873763)
+
+[node name="SuckArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SuckArea"]
+position = Vector2(46.5, -0.5)
+shape = SubResource("RectangleShape2D_o0s1h")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(11, -1)
+rotation = -1.5708
+target_position = Vector2(-2.08616e-06, 47)

@@ -9,7 +9,7 @@
 [node name="level" parent="." instance=ExtResource("1_hbvul")]
 
 [node name="Player" parent="." instance=ExtResource("2_d8brn")]
-position = Vector2(49, 114)
+position = Vector2(57, 92)
 
 [node name="enemy" parent="." instance=ExtResource("3_5km2o")]
 position = Vector2(235, 129)
