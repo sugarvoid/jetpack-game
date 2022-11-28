@@ -1,15 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c30r8diwg4d66"]
+[gd_scene load_steps=4 format=3 uid="uid://c30r8diwg4d66"]
 
-[ext_resource type="Texture2D" uid="uid://bekpwoggywuox" path="res://game/weapon/a_gun.png" id="1_8xphm"]
+[ext_resource type="Script" path="res://game/weapon/weapon.gd" id="1_cggji"]
+[ext_resource type="Texture2D" uid="uid://bekpwoggywuox" path="res://game/weapon/a_gun.png" id="2_i3o6t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0s1h"]
 size = Vector2(71, 7)
 
-[node name="agun" type="Node2D"]
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_cggji")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.45676, 1.6223)
-texture = ExtResource("1_8xphm")
+texture = ExtResource("2_i3o6t")
 offset = Vector2(4, -1)
 
 [node name="Muzzle" type="Marker2D" parent="."]

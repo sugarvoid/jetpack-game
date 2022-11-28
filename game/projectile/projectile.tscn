@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwm2n05g1cx16"]
+
+[ext_resource type="Texture2D" uid="uid://b2enijll30ok6" path="res://game/projectile/bullets.png" id="1"]
+[ext_resource type="Script" path="res://game/projectile/projectile.gd" id="2"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 2.0
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1")
+hframes = 3
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]

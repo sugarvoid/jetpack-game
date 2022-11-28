@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxx04ya68uogm"]
+[gd_scene load_steps=5 format=3 uid="uid://dgs0kl0a8j7ae"]
 
 [ext_resource type="Texture2D" uid="uid://cpra4ugqxa72n" path="res://game/actor/player/player.png" id="1_byush"]
 [ext_resource type="Script" path="res://game/actor/player/player.gd" id="1_luvoj"]
-[ext_resource type="PackedScene" uid="uid://c30r8diwg4d66" path="res://game/weapon/agun.tscn" id="3_ex83i"]
+[ext_resource type="PackedScene" uid="uid://c30r8diwg4d66" path="res://game/weapon/weapon.tscn" id="3_s7vqm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_45eje"]
 radius = 4.0
@@ -18,7 +18,7 @@ texture = ExtResource("1_byush")
 position = Vector2(-1, 3)
 shape = SubResource("CapsuleShape2D_45eje")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Hand" type="Marker2D" parent="."]
 position = Vector2(2, 4)
 
-[node name="agun" parent="Marker2D" instance=ExtResource("3_ex83i")]
+[node name="Weapon" parent="Hand" instance=ExtResource("3_s7vqm")]

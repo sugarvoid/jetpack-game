@@ -18,10 +18,22 @@ _global_script_classes=[{
 "class": &"Player",
 "language": &"GDScript",
 "path": "res://game/actor/player/player.gd"
+}, {
+"base": "Area2D",
+"class": &"Projectile",
+"language": &"GDScript",
+"path": "res://game/projectile/projectile.gd"
+}, {
+"base": "Node2D",
+"class": &"Weapon",
+"language": &"GDScript",
+"path": "res://game/weapon/weapon.gd"
 }]
 _global_script_class_icons={
 "Actor": "",
-"Player": ""
+"Player": "",
+"Projectile": "",
+"Weapon": ""
 }
 
 [application]
