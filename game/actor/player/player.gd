@@ -9,6 +9,7 @@ const JUMP_VELOCITY = -40.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_facing_right: bool = true
+var is_reloading: bool = false
 
 @onready var weapon: Weapon = get_node("Hand/Weapon")
 
@@ -17,6 +18,10 @@ func _ready() -> void:
 
 func _fire_weapon() -> void:
 	self.emit_signal("request_bullet")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_released("reload"):
+		reload()
 
 func _update_facing_dir(target: Vector2):
 
@@ -43,10 +48,12 @@ func _update_facing_dir(target: Vector2):
 
 func _physics_process(delta: float) -> void:
 	
+	
 	var mouse_location: Vector2 = get_local_mouse_position()
 	self._update_facing_dir(mouse_location)
 	
-	$Hand/Weapon.look_at(get_global_mouse_position())
+	if !self.is_reloading:
+		$Hand/Weapon.look_at(get_global_mouse_position())
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y = min(velocity.y + 3, gravity) 
@@ -69,3 +76,12 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+func reload() -> void:
+	self.is_reloading = true
+	$AnimationPlayer.play("reload")
+	
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "reload":
+		self.is_reloading = false
