@@ -23,11 +23,13 @@ func _physics_process(delta):
 
 func _ready() -> void:
 	$LifeTimer.start(self.life)
+	self.body_entered.connect(self.made_contact)
 
 func _on_LifeTimer_timeout() -> void:
 	queue_free()
 
 func made_contact(thing: Node2D) -> void:
 	print(thing)
-	thing.take_damage(2)
+	if thing.has_method("take_damage"):
+		thing.take_damage(2)
 	self.queue_free()

@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-signal request_bullet
+signal request_bullet(pos: Marker2D)
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -40.0
@@ -11,17 +11,18 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_facing_right: bool = true
 var is_reloading: bool = false
 
+
 @onready var weapon: Weapon = get_node("Hand/Weapon")
 
 func _ready() -> void:
 	self.weapon.can_shoot_bullet.connect(self._fire_weapon)
 
-func _fire_weapon() -> void:
-	self.emit_signal("request_bullet")
+func _fire_weapon(weapon: Weapon) -> void:
+	self.emit_signal("request_bullet", weapon)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("reload"):
-		reload()
+		_reload()
 
 func _update_facing_dir(target: Vector2):
 
@@ -77,9 +78,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func reload() -> void:
+func _reload() -> void:
 	self.is_reloading = true
 	$AnimationPlayer.play("reload")
+	self.weapon.reload()
 	
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

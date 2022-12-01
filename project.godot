@@ -25,6 +25,11 @@ _global_script_classes=[{
 "path": "res://game/projectile/projectile.gd"
 }, {
 "base": "Node2D",
+"class": &"ProjectileManager",
+"language": &"GDScript",
+"path": "res://game/manager/projectile_manager/projectile_manager.gd"
+}, {
+"base": "Node2D",
 "class": &"Weapon",
 "language": &"GDScript",
 "path": "res://game/weapon/weapon.gd"
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "Actor": "",
 "Player": "",
 "Projectile": "",
+"ProjectileManager": "",
 "Weapon": ""
 }
 

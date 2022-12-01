@@ -1,7 +1,7 @@
 class_name Weapon
 extends Node2D
 
-signal can_shoot_bullet
+signal can_shoot_bullet(weapon: Weapon)
 
 enum BULLET_TYPE {
 	WATER,
@@ -50,11 +50,13 @@ func secondary_action() -> void:
 
 func fire_bullet() -> void:
 	if bullets_left > 0:
-		emit_signal("can_shoot_bullet")
+		emit_signal("can_shoot_bullet", self)
 		print('emitted can shoot signal')
 		self.bullets_left -= 1
 		if self.bullets_left == 0:
 			return
 
+func reload() -> void:
+	self.bullets_left = self.magazine_size
 
 
