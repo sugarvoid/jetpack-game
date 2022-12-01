@@ -7,16 +7,12 @@ const p_Player: PackedScene = preload("res://game/actor/player/player.tscn")
 
 var player: Player
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	self.add_player_to_level()
 	self.player.request_bullet.connect(self._add_projectile)
 	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func add_player_to_level() -> void:
 	self.player = p_Player.instantiate()

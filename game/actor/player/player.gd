@@ -36,17 +36,6 @@ func _update_facing_dir(target: Vector2):
 			is_facing_right = true
 
 
-
-#	#Horizontal flip
-#	if target.x > self.global_position.x && is_facing_right == false:
-#		self.scale.x = 1
-#		self.is_facing_right = true
-#
-#	if target.x < self.global_position.x && is_facing_right == true:
-#		self.scale.x = -1
-#		self.is_facing_right = false
-
-
 func _physics_process(delta: float) -> void:
 	
 	
@@ -59,8 +48,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y = min(velocity.y + 3, gravity) 
 		#velocity.y += gravity * delta
-
-
 
 	# Handle Jump.
 	if Input.is_action_pressed("jump"): # and is_on_floor():
