@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://due1y3aqq6v26"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_csvqc"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_csvqc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 83.0
+offset_bottom = 29.0
+text = "Score: 000"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 142.0
+offset_top = 2.0
+offset_right = 221.0
+offset_bottom = 28.0
+text = "Level: 00"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 274.0
+offset_top = 3.0
+offset_right = 353.0
+offset_bottom = 29.0
+text = "Lives: ooo"
