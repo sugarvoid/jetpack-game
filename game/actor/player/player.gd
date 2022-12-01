@@ -53,7 +53,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("jump"): # and is_on_floor():
 		velocity.y = min(velocity.y - 2, JUMP_VELOCITY)
 	if Input.is_action_just_pressed("shoot"):
-		$Hand/Weapon.fire_bullet()
+		if !self.is_reloading:
+			$Hand/Weapon.fire_bullet()
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
