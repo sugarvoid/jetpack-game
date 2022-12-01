@@ -26,4 +26,4 @@ func add_player_to_level() -> void:
 	
 
 func _add_projectile(weapon: Weapon) -> void:
-	projectile_manager.add_bullet_to_screen(weapon)
+	projectile_manager.add_player_bullet_to_screen(weapon)
