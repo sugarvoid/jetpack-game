@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bc8nmvhcv1117"]
+
+[node name="enemy_manager" type="Node2D"]
+
+[node name="SpawnPonits" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(44.6718, 33.6229)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(164.526, 35.3907)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(275.542, 35.3907)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(329.636, 28.3196)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(220.034, 31.5016)
+
+[node name="Marker2D6" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(95.5834, 34.6836)

@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7dnoip4eldgd"]
+[gd_scene load_steps=5 format=3 uid="uid://b7dnoip4eldgd"]
 
 [ext_resource type="PackedScene" uid="uid://davslkd867sfb" path="res://game/level/level.tscn" id="1_hbvul"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_rghpk"]
+[ext_resource type="PackedScene" uid="uid://bc8nmvhcv1117" path="res://game/manager/enemy_manager/enemy_manager.tscn" id="2_i8q83"]
 [ext_resource type="PackedScene" uid="uid://h81us56cm7w7" path="res://game/actor/enemy/enemy.tscn" id="3_5km2o"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_rghpk")
+
+[node name="enemy_manager" parent="." instance=ExtResource("2_i8q83")]
 
 [node name="Level_1" parent="." instance=ExtResource("1_hbvul")]
 
