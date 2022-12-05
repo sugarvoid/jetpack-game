@@ -30,13 +30,17 @@ var bullet_sprite_frame: int
 var reload_time: float
 var magazine_size: int
 var bullets_left: int
+var spread: float
 var bullet_ID: String
+var base_damage: int
 
 
 func _ready() -> void:
+	base_damage = 1
 	bullet_speed = 300
 	bullet_life = 3.5
 	reload_time = 2.5
+	spread = 1.0
 	magazine_size = 9
 	bullets_left = 9
 	bullet_sprite_frame = 1

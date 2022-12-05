@@ -1,14 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgs0kl0a8j7ae"]
+[gd_scene load_steps=12 format=3 uid="uid://dgs0kl0a8j7ae"]
 
 [ext_resource type="Texture2D" uid="uid://cpra4ugqxa72n" path="res://game/actor/player/player.png" id="1_byush"]
 [ext_resource type="Script" path="res://game/actor/player/player.gd" id="1_luvoj"]
 [ext_resource type="PackedScene" uid="uid://c30r8diwg4d66" path="res://game/weapon/weapon.tscn" id="3_s7vqm"]
+[ext_resource type="Texture2D" uid="uid://dnyitpxrpborr" path="res://game/actor/player/jetpack.png" id="4_gj5t7"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkutt"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bncsd"]
 radius = 4.0
 height = 12.0
 
-[sub_resource type="Animation" id="Animation_dvx6j"]
+[sub_resource type="Animation" id="Animation_0nx0y"]
 resource_name = "reload"
 length = 0.25
 step = 0.05
@@ -25,10 +26,35 @@ tracks/0/keys = {
 "values": [0.0, -6.28319]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_odo5o"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qylbd"]
 _data = {
-"reload": SubResource("Animation_dvx6j")
+"reload": SubResource("Animation_0nx0y")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njs7s"]
+atlas = ExtResource("4_gj5t7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f3mt"]
+atlas = ExtResource("4_gj5t7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsfdt"]
+atlas = ExtResource("4_gj5t7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h7k8w"]
+animations = [{
+"frames": [SubResource("AtlasTexture_njs7s")],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_7f3mt"), SubResource("AtlasTexture_fsfdt")],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_luvoj")
@@ -38,7 +64,7 @@ texture = ExtResource("1_byush")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 3)
-shape = SubResource("CapsuleShape2D_vkutt")
+shape = SubResource("CapsuleShape2D_bncsd")
 
 [node name="Hand" type="Marker2D" parent="."]
 position = Vector2(2, 4)
@@ -48,7 +74,12 @@ rotation = -6.28319
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_odo5o")
+"": SubResource("AnimationLibrary_qylbd")
 }
+
+[node name="Jetpack" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_h7k8w")
+animation = &"on"
+frame = 1
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

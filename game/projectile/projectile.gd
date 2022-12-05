@@ -8,6 +8,7 @@ extends Area2D
 var projectile_ID: String
 var speed: float
 var life: float
+var damage_given: int
 
 func get_class() -> String:
 	return "Projectile"
@@ -31,5 +32,5 @@ func _on_LifeTimer_timeout() -> void:
 func made_contact(thing: Node2D) -> void:
 	print(thing)
 	if thing.has_method("take_damage"):
-		thing.take_damage(2)
+		thing.take_damage(self.damage_given)
 	self.queue_free()

@@ -49,11 +49,13 @@ func _physics_process(delta: float) -> void:
 		$Hand/Weapon.look_at(get_global_mouse_position())
 	# Add the gravity.
 	if not is_on_floor():
+		$Jetpack.play("off")
 		velocity.y = min(velocity.y + 3, gravity) 
 		#velocity.y += gravity * delta
 
 	# Handle Jump.
 	if Input.is_action_pressed("jump"): # and is_on_floor():
+		$Jetpack.play("on")
 		velocity.y = min(velocity.y - 2, JUMP_VELOCITY)
 		self.jet_pack_heat += 0.2
 	if Input.is_action_just_pressed("shoot"):
