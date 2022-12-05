@@ -7,22 +7,22 @@ script = ExtResource("1_o05vx")
 
 [node name="SpawnPonits" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(44.6718, 33.6229)
+[node name="0,4" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(41.1001, 147.916)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(164.526, 35.3907)
+position = Vector2(139.524, 34.2001)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(275.542, 35.3907)
+position = Vector2(293.4, 30.2317)
 
 [node name="Marker2D4" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(329.636, 28.3196)
+position = Vector2(320.112, 154.121)
 
 [node name="Marker2D5" type="Marker2D" parent="SpawnPonits"]
 position = Vector2(220.034, 31.5016)
 
-[node name="Marker2D6" type="Marker2D" parent="SpawnPonits"]
-position = Vector2(95.5834, 34.6836)
+[node name="00" type="Marker2D" parent="SpawnPonits"]
+position = Vector2(40.4212, 29.5246)
 
 [node name="EnemyContainer" type="Node2D" parent="."]
