@@ -40,7 +40,7 @@ func _ready() -> void:
 	bullet_speed = 300
 	bullet_life = 3.5
 	reload_time = 2.5
-	spread = 1.0
+	spread = 0.1
 	magazine_size = 9
 	bullets_left = 9
 	bullet_sprite_frame = 1

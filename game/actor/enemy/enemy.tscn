@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/actor/enemy/enemy.gd" id="1_o6hg8"]
 [ext_resource type="Texture2D" uid="uid://c1ueied5uy5tk" path="res://game/actor/enemy/enemy.png" id="2_s4flw"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bwqwg"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a7iv6"]
 radius = 4.0
 height = 12.0
 
@@ -15,7 +15,7 @@ texture = ExtResource("2_s4flw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 3)
-shape = SubResource("CapsuleShape2D_bwqwg")
+shape = SubResource("CapsuleShape2D_a7iv6")
 
 [node name="Beam" type="RayCast2D" parent="."]
 target_position = Vector2(0, -150)
