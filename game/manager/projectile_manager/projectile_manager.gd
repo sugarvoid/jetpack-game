@@ -10,6 +10,7 @@ func _ready() -> void:
 func add_player_bullet_to_screen(weapon: Weapon) -> void:
 	rng.randomize()
 	var projectile = p_Projectile.instantiate()
+	projectile.sprite_frame = weapon.bullet_sprite_frame
 	projectile.damage_given = weapon.damage
 	projectile.global_transform = weapon.muzzle.global_transform
 	var offset = randf_range(weapon.spread, -weapon.spread)

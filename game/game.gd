@@ -9,6 +9,9 @@ var current_level: int
 var player: Player
 
 func _ready() -> void:
+	### Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	# Input.set_custom_mouse_cursor(preload("res://game/hud/1x1.png"))
+	
 	self.current_level = 1
 	self.HUD.update_level(current_level)
 	self.add_player_to_level()

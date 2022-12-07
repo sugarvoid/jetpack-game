@@ -89,8 +89,10 @@ func _reload() -> void:
 
 func _get_damage_amount() -> int:
 	if self.is_grounded:
+		weapon.bullet_sprite_frame = 5
 		return self.ground_damge
 	else:
+		weapon.bullet_sprite_frame = 0
 		return self.air_damage
 
 

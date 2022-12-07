@@ -7,6 +7,7 @@ var projectile_ID: String
 var speed: float
 var life: float
 var damage_given: int
+var sprite_frame: int
 
 func get_class() -> String:
 	return "Projectile"
@@ -15,7 +16,7 @@ func get_class() -> String:
 func set_projectile_properties(weapon: Weapon) -> void:
 	self.speed = weapon.bullet_speed
 	self.life = weapon.bullet_life
-	self.sprite.frame = weapon.bullet_sprite_frame
+	
 	self.projectile_ID = weapon.bullet_ID
 
 
@@ -24,6 +25,7 @@ func _physics_process(delta):
 
 
 func _ready() -> void:
+	self.sprite.frame = self.sprite_frame
 	$LifeTimer.start(self.life)
 	self.body_entered.connect(self.made_contact)
 
