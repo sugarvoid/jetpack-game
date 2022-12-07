@@ -1,9 +1,14 @@
 class_name Enemy
 extends Actor
 
+signal  has_died(e: Enemy)
+
 var direction = -1
+var max_health: int = 15
+var health: int
 
 func _ready() -> void:
+	health = 15
 	speed = 10
 	jump_velocity = -40.0
 
@@ -22,6 +27,14 @@ func _check_if_on_wall() -> bool:
 
 func _turn_around() -> void:
 	self.direction *= -1
+
+func take_damage(n: int) -> void:
+	#print('taken: ', n, ' damage')
+	print(health)
+	self.health = clamp(health - n, 0, max_health)
+	if self.health == 0:
+		print(self.health)
+		self.emit_signal("has_died", self)
 
 func _walk() -> void:
 	

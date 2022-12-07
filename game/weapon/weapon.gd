@@ -32,11 +32,11 @@ var magazine_size: int
 var bullets_left: int
 var spread: float
 var bullet_ID: String
-var base_damage: int
+var damage: int
 
 
 func _ready() -> void:
-	base_damage = 1
+
 	bullet_speed = 300
 	bullet_life = 3.5
 	reload_time = 2.5
@@ -51,6 +51,9 @@ func primary_action() -> void:
 	
 func secondary_action() -> void:
 	assert(false, "Overide method")
+
+func set_damage_amount(n: int) -> void:
+	self.damage = n
 
 func fire_bullet() -> void:
 	if bullets_left > 0:

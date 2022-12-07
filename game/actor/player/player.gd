@@ -2,14 +2,17 @@ class_name Player
 extends Actor
 
 signal request_bullet(pos: Marker2D)
+signal landed
 
 
 
-
+var ground_damge: int = 1
+var air_damage: int = 5
 var is_facing_right: bool = true
 var is_reloading: bool = false
 var jet_pack_heat: float = 0
 var jet_pack_max_heat: float = 50
+var is_grounded: bool = false
 
 
 @onready var weapon: Weapon = get_node("Hand/Weapon")
@@ -18,6 +21,7 @@ func _ready() -> void:
 	self.jump_velocity = -40
 	self.speed = 100
 	self.weapon.can_shoot_bullet.connect(self._fire_weapon)
+
 
 func _fire_weapon(weapon: Weapon) -> void:
 	self.emit_signal("request_bullet", weapon)
@@ -40,7 +44,7 @@ func _update_facing_dir(target: Vector2):
 
 func _physics_process(delta: float) -> void:
 	
-	print(snapped(self.jet_pack_heat, 0.1))
+	$Label.text = str(snapped(self.jet_pack_heat, 0.1))
 	var mouse_location: Vector2 = get_local_mouse_position()
 	self._update_facing_dir(mouse_location)
 	
@@ -49,8 +53,12 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		$Flame.visible = false
+		is_grounded = false
 		velocity.y = min(velocity.y + 3, gravity) 
 		#velocity.y += gravity * delta
+	else:
+		is_grounded = true
+		self.emit_signal("landed")
 
 	# Handle Jump.
 	if Input.is_action_pressed("jump"): # and is_on_floor():
@@ -58,10 +66,11 @@ func _physics_process(delta: float) -> void:
 		velocity.y = min(velocity.y - 2, jump_velocity)
 		self.jet_pack_heat = clamp(jet_pack_heat + 0.2, 0, self.jet_pack_max_heat)
 	else:
-		print('not pressing')
+		# not pressing gas
 		self.jet_pack_heat = clamp(jet_pack_heat - 0.25, 0, self.jet_pack_max_heat)
 	if Input.is_action_just_pressed("shoot"):
 		if !self.is_reloading:
+			self.weapon.set_damage_amount(self._get_damage_amount())
 			$Hand/Weapon.fire_bullet()
 		
 	# Get the input direction and handle the movement/deceleration.
@@ -80,6 +89,14 @@ func _reload() -> void:
 	self.weapon.reload()
 	
 
+func _get_damage_amount() -> int:
+	if self.is_grounded:
+		return self.ground_damge
+	else:
+		return self.air_damage
+
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "reload":
 		self.is_reloading = false
+
+
