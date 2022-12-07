@@ -58,7 +58,6 @@ func set_damage_amount(n: int) -> void:
 func fire_bullet() -> void:
 	if bullets_left > 0:
 		emit_signal("can_shoot_bullet", self)
-		print('emitted can shoot signal')
 		self.bullets_left -= 1
 		if self.bullets_left == 0:
 			return

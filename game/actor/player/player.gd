@@ -4,7 +4,7 @@ extends Actor
 signal request_bullet(pos: Marker2D)
 signal landed
 
-
+@onready var weapon: Weapon = get_node("Hand/Weapon")
 
 var ground_damge: int = 1
 var air_damage: int = 5
@@ -15,8 +15,6 @@ var jet_pack_max_heat: float = 50
 var is_grounded: bool = false
 
 
-@onready var weapon: Weapon = get_node("Hand/Weapon")
-
 func _ready() -> void:
 	self.jump_velocity = -40
 	self.speed = 100
@@ -26,12 +24,13 @@ func _ready() -> void:
 func _fire_weapon(weapon: Weapon) -> void:
 	self.emit_signal("request_bullet", weapon)
 
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("reload"):
 		_reload()
 
-func _update_facing_dir(target: Vector2):
 
+func _update_facing_dir(target: Vector2):
 	if target.x < 0:
 		if is_facing_right:
 			scale.x = -1
@@ -43,8 +42,7 @@ func _update_facing_dir(target: Vector2):
 
 
 func _physics_process(delta: float) -> void:
-	
-	$Label.text = str(snapped(self.jet_pack_heat, 0.1))
+	$Label.text = str(self.get_jetpack_heat())
 	var mouse_location: Vector2 = get_local_mouse_position()
 	self._update_facing_dir(mouse_location)
 	
@@ -95,8 +93,10 @@ func _get_damage_amount() -> int:
 	else:
 		return self.air_damage
 
+
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "reload":
 		self.is_reloading = false
 
-
+func get_jetpack_heat() -> float:
+	return snapped(self.jet_pack_heat, 0.1)
