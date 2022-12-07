@@ -9,7 +9,7 @@ signal request_bullet(pos: Marker2D)
 var is_facing_right: bool = true
 var is_reloading: bool = false
 var jet_pack_heat: float = 0
-var jet_pack_max_heat: int = 0
+var jet_pack_max_heat: float = 50
 
 
 @onready var weapon: Weapon = get_node("Hand/Weapon")
@@ -40,7 +40,7 @@ func _update_facing_dir(target: Vector2):
 
 func _physics_process(delta: float) -> void:
 	
-	print(self.jet_pack_heat)
+	print(snapped(self.jet_pack_heat, 0.1))
 	var mouse_location: Vector2 = get_local_mouse_position()
 	self._update_facing_dir(mouse_location)
 	
@@ -56,9 +56,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("jump"): # and is_on_floor():
 		$Flame.visible = true
 		velocity.y = min(velocity.y - 2, jump_velocity)
-		self.jet_pack_heat += 0.2
+		self.jet_pack_heat = clamp(jet_pack_heat + 0.2, 0, self.jet_pack_max_heat)
 	else:
 		print('not pressing')
+		self.jet_pack_heat = clamp(jet_pack_heat - 0.25, 0, self.jet_pack_max_heat)
 	if Input.is_action_just_pressed("shoot"):
 		if !self.is_reloading:
 			$Hand/Weapon.fire_bullet()

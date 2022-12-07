@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c30r8diwg4d66"]
+[gd_scene load_steps=5 format=3 uid="uid://dhw72oqsqqh2q"]
 
 [ext_resource type="Script" path="res://game/weapon/weapon.gd" id="1_cggji"]
 [ext_resource type="Texture2D" uid="uid://bekpwoggywuox" path="res://game/weapon/a_gun.png" id="2_i3o6t"]
+[ext_resource type="Texture2D" uid="uid://bcqliddhc36rj" path="res://game/weapon/reticle.png" id="3_4ylih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0s1h"]
 size = Vector2(71, 7)
@@ -28,3 +29,8 @@ shape = SubResource("RectangleShape2D_o0s1h")
 position = Vector2(11, -1)
 rotation = -1.5708
 target_position = Vector2(-2.08616e-06, 47)
+
+[node name="Reticle" type="Sprite2D" parent="."]
+position = Vector2(54, -1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_4ylih")

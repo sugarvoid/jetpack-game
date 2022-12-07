@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cpra4ugqxa72n" path="res://game/actor/player/player.png" id="1_byush"]
 [ext_resource type="Script" path="res://game/actor/player/player.gd" id="1_luvoj"]
 [ext_resource type="Texture2D" uid="uid://dqopm6dq0pxoo" path="res://game/actor/player/flame.png" id="2_fu8pl"]
-[ext_resource type="PackedScene" uid="uid://c30r8diwg4d66" path="res://game/weapon/weapon.tscn" id="3_s7vqm"]
+[ext_resource type="PackedScene" uid="uid://dhw72oqsqqh2q" path="res://game/weapon/weapon.tscn" id="3_s7vqm"]
 [ext_resource type="Texture2D" uid="uid://dnyitpxrpborr" path="res://game/actor/player/jetpack.png" id="4_gj5t7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p54cn"]

@@ -1,7 +1,7 @@
 extends Node2D
 
 
-
+@onready var HUD: HUD = get_node("HUD")
 const p_Player: PackedScene = preload("res://game/actor/player/player.tscn")
 @onready var projectile_manager: ProjectileManager = get_node("ProjectileManager")
 
@@ -13,6 +13,8 @@ func _ready() -> void:
 	self.player.request_bullet.connect(self._add_projectile)
 	
 
+func _physics_process(delta: float) -> void:
+	self.HUD.update_jetpack_heat_bar(self.player.jet_pack_heat)
 
 func add_player_to_level() -> void:
 	self.player = p_Player.instantiate()

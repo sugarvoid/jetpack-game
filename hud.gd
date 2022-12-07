@@ -1,3 +1,4 @@
+class_name HUD
 extends CanvasLayer
 
 @onready var lbl_score: Label = get_node("LblScore")
@@ -17,3 +18,6 @@ func _update_score(num: int) -> void:
 	#TODO: Pad zeros 3
 	self.lbl_score.text = str("Score: ", ("%03d" % num))
 	
+
+func update_jetpack_heat_bar(amount: float) -> void:
+	$TextureProgressBar.value = amount
