@@ -1,14 +1,11 @@
 class_name Player
-extends CharacterBody2D
+extends Actor
 
 signal request_bullet(pos: Marker2D)
 
-const SPEED = 100.0
-const JUMP_VELOCITY = -40.0
 
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 var is_facing_right: bool = true
 var is_reloading: bool = false
 var jet_pack_heat: float = 0
@@ -18,6 +15,8 @@ var jet_pack_max_heat: int = 0
 @onready var weapon: Weapon = get_node("Hand/Weapon")
 
 func _ready() -> void:
+	self.jump_velocity = -40
+	self.speed = 100
 	self.weapon.can_shoot_bullet.connect(self._fire_weapon)
 
 func _fire_weapon(weapon: Weapon) -> void:
@@ -56,8 +55,10 @@ func _physics_process(delta: float) -> void:
 	# Handle Jump.
 	if Input.is_action_pressed("jump"): # and is_on_floor():
 		$Jetpack.play("on")
-		velocity.y = min(velocity.y - 2, JUMP_VELOCITY)
+		velocity.y = min(velocity.y - 2, jump_velocity)
 		self.jet_pack_heat += 0.2
+	else:
+		print('not pressing')
 	if Input.is_action_just_pressed("shoot"):
 		if !self.is_reloading:
 			$Hand/Weapon.fire_bullet()
@@ -66,9 +67,9 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
 

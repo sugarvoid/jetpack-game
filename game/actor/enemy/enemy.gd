@@ -1,12 +1,11 @@
 class_name Enemy
-extends CharacterBody2D
+extends Actor
 
 
-const SPEED = 100.0
-const JUMP_VELOCITY = -40.0
 
-var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+func _ready() -> void:
+	speed = 100.0
+	jump_velocity = -40.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
