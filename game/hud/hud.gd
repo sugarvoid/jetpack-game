@@ -17,8 +17,10 @@ func update_score(num: int) -> void:
 func update_level(num: int) -> void:
 	self.lbl_level.text = str("Level: ", ("%03d" % num))
 
+
 func update_heat_bar_max_value(n: float) -> void:
 	self.pgb_player_heat.max_value = int(n)
+
 
 func update_jetpack_heat_bar(amount: float) -> void:
 	self.pgb_player_heat.value = amount
