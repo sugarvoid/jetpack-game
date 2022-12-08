@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://due1y3aqq6v26"]
+[gd_scene load_steps=2 format=3 uid="uid://xipsfofahwd0"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_csvqc"]
+[ext_resource type="Script" path="res://game/hud/hud.gd" id="1_6u4j5"]
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_csvqc")
+script = ExtResource("1_6u4j5")
 
 [node name="LblScore" type="Label" parent="."]
 offset_left = 4.0
@@ -26,12 +26,11 @@ offset_right = 353.0
 offset_bottom = 29.0
 text = "Lives: ooo"
 
-[node name="TextureProgressBar" type="ProgressBar" parent="."]
+[node name="PlayerHeatBar" type="ProgressBar" parent="."]
 offset_left = 343.0
 offset_top = 86.0
 offset_right = 356.0
 offset_bottom = 193.0
-max_value = 50.0
 step = 0.5
 value = 12.5
 fill_mode = 3

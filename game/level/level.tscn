@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://davslkd867sfb"]
+[gd_scene load_steps=5 format=3 uid="uid://davslkd867sfb"]
 
+[ext_resource type="Script" path="res://game/level/level.gd" id="1_c13vj"]
 [ext_resource type="Texture2D" uid="uid://cbsyh6wxsg5th" path="res://game/level/tiles.png" id="1_txjxn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynr6y"]
@@ -25,6 +26,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_ynr6y")
 
 [node name="Level_1" type="Node2D"]
+script = ExtResource("1_c13vj")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_5kdet")

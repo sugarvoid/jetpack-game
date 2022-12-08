@@ -10,9 +10,10 @@ var ground_damge: int = 1
 var air_damage: int = 5
 var is_facing_right: bool = true
 var is_reloading: bool = false
-var jet_pack_heat: float = 0
-var jet_pack_max_heat: float = 50
+var _jet_pack_heat: float = 0
+var _jet_pack_max_heat: float = 30
 var is_grounded: bool = false
+var is_overheated: bool = false
 
 
 func _ready() -> void:
@@ -40,6 +41,9 @@ func _update_facing_dir(target: Vector2):
 			scale.x = 1
 			is_facing_right = true
 
+func _process(delta: float) -> void:
+	if self._jet_pack_heat == 30:
+		print('over heat mode')
 
 func _physics_process(delta: float) -> void:
 	$Label.text = str(self.get_jetpack_heat())
@@ -62,10 +66,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("jump"): # and is_on_floor():
 		$Flame.visible = true
 		velocity.y = min(velocity.y - 2, jump_velocity)
-		self.jet_pack_heat = clamp(jet_pack_heat + 0.2, 0, self.jet_pack_max_heat)
+		self._jet_pack_heat = clamp(_jet_pack_heat + 0.2, 0, self._jet_pack_max_heat)
 	else:
 		# not pressing gas
-		self.jet_pack_heat = clamp(jet_pack_heat - 0.25, 0, self.jet_pack_max_heat)
+		self._jet_pack_heat = clamp(_jet_pack_heat - 0.25, 0, self._jet_pack_max_heat)
 	if Input.is_action_just_pressed("shoot"):
 		if !self.is_reloading:
 			self.weapon.set_damage_amount(self._get_damage_amount())
@@ -101,4 +105,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		self.is_reloading = false
 
 func get_jetpack_heat() -> float:
-	return snapped(self.jet_pack_heat, 0.1)
+	return snapped(self._jet_pack_heat, 0.1)
+	
+func get_jetpack_max_heat() -> float:
+	return self._jet_pack_max_heat

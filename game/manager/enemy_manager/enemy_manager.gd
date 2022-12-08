@@ -10,14 +10,14 @@ const p_Enemy: PackedScene = preload("res://game/actor/enemy/enemy.tscn")
 var _current_mobs: int
 
 func _ready() -> void:
-	self.spawn_mob(self.spoint.global_position)
+	self.spawn_mob(preload("res://game/actor/enemy/enemy.tscn"), self.spoint.global_position)
 
 
 func get_mob_count() -> int:
 	return self.enemy_container.get_child_count()
 	
 
-func spawn_mob(spwan_loc: Vector2) -> void:
+func spawn_mob(e_type: PackedScene, spwan_loc: Vector2) -> void:
 	var new_e: Enemy = p_Enemy.instantiate()
 	new_e.has_died.connect(self.remove_mob)
 	new_e.global_position = spwan_loc
