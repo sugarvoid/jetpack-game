@@ -1,8 +1,7 @@
 extends Node2D
 
 @onready var hud: HUD = get_node("HUD")
-@onready var projectile_manager: ProjectileManager = get_node("ProjectileManager")
-
+var projectile_manager: ProjectileManager
 const p_Player: PackedScene = preload("res://game/actor/player/player.tscn")
 
 const LEVEL_PATH: String = "res://game/level/level_"
@@ -20,6 +19,8 @@ func _ready() -> void:
 	self.current_level = self._load_level(current_level_number)
 	### Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	# Input.set_custom_mouse_cursor(preload("res://game/hud/1x1.png"))
+	self.projectile_manager = preload("res://game/manager/projectile_manager/projectile_manager.tscn").instantiate()
+	self.add_child(projectile_manager)
 	self.add_player_to_level()
 	self.current_level_number = 1
 	print(self.hud)
@@ -37,6 +38,7 @@ func _start_level(level) -> void:
 
 func _load_level(lvl_num: int) -> Level:
 	var level: Level = load(_get_level_path_string(lvl_num)).instantiate()
+	level.all_dead.connect(self._on_level_completion)
 	self.add_child(level)
 	return level
 
@@ -52,3 +54,6 @@ func add_player_to_level() -> void:
 
 func _add_projectile(weapon: Weapon) -> void:
 	projectile_manager.add_player_bullet_to_screen(weapon)
+
+func _on_level_completion() -> void:
+	print('level is done')

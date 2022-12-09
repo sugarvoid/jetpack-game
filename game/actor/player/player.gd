@@ -64,9 +64,10 @@ func _physics_process(delta: float) -> void:
 
 	# Handle Jump.
 	if Input.is_action_pressed("jump"): # and is_on_floor():
-		$Flame.visible = true
-		velocity.y = min(velocity.y - 2, jump_velocity)
-		self._jet_pack_heat = clamp(_jet_pack_heat + 0.2, 0, self._jet_pack_max_heat)
+		if !self.is_overheated:
+			$Flame.visible = true
+			velocity.y = min(velocity.y - 2, jump_velocity)
+			self._jet_pack_heat = clamp(_jet_pack_heat + 0.2, 0, self._jet_pack_max_heat)
 	else:
 		# not pressing gas
 		self._jet_pack_heat = clamp(_jet_pack_heat - 0.25, 0, self._jet_pack_max_heat)

@@ -20,9 +20,9 @@ _global_script_classes=[{
 "path": "res://game/actor/enemy/enemy.gd"
 }, {
 "base": "Node2D",
-"class": &"EnemyManager",
+"class": &"EnemySpawner",
 "language": &"GDScript",
-"path": "res://game/manager/enemy_manager/enemy_manager.gd"
+"path": "res://game/manager/enemy_spawner/enemy_spawner.gd"
 }, {
 "base": "CanvasLayer",
 "class": &"HUD",
@@ -57,7 +57,7 @@ _global_script_classes=[{
 _global_script_class_icons={
 "Actor": "",
 "Enemy": "",
-"EnemyManager": "",
+"EnemySpawner": "",
 "HUD": "",
 "Level": "",
 "Player": "",

@@ -1,21 +1,14 @@
-class_name EnemyManager
+class_name EnemySpawner
 extends Node2D
 
-@onready var enemy_container: Node2D = get_node("EnemyContainer")
-@onready var spoint: Marker2D = get_node("SpawnPonits/0,4")
 
 const p_Enemy: PackedScene = preload("res://game/actor/enemy/enemy.tscn")
-
 
 var _current_mobs: int
 
 func _ready() -> void:
-	self.spawn_mob(preload("res://game/actor/enemy/enemy.tscn"), self.spoint.global_position)
+	pass
 
-
-func get_mob_count() -> int:
-	return self.enemy_container.get_child_count()
-	
 
 func spawn_mob(e_type: PackedScene, spwan_loc: Vector2) -> void:
 	var new_e: Enemy = p_Enemy.instantiate()
