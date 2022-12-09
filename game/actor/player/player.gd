@@ -29,6 +29,10 @@ func _fire_weapon(weapon: Weapon) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("reload"):
 		_reload()
+	if event.is_action_pressed("shoot"):
+		if !self.is_reloading:
+			self.weapon.set_damage_amount(self._get_damage_amount())
+			$Hand/Weapon.fire_bullet()
 
 
 func _update_facing_dir(target: Vector2):
@@ -46,12 +50,12 @@ func _process(delta: float) -> void:
 		print('over heat mode')
 
 func _physics_process(delta: float) -> void:
-	$Label.text = str(self.get_jetpack_heat())
+	self._aim()
+	
+	
 	var mouse_location: Vector2 = get_local_mouse_position()
 	self._update_facing_dir(mouse_location)
 	
-	if !self.is_reloading:
-		$Hand/Weapon.look_at(get_global_mouse_position())
 	# Add the gravity.
 	if not is_on_floor():
 		$Flame.visible = false
@@ -71,11 +75,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		# not pressing gas
 		self._jet_pack_heat = clamp(_jet_pack_heat - 0.25, 0, self._jet_pack_max_heat)
-	if Input.is_action_just_pressed("shoot"):
-		if !self.is_reloading:
-			self.weapon.set_damage_amount(self._get_damage_amount())
-			$Hand/Weapon.fire_bullet()
-		
+
+	
+	self._handle_movement()
+	
+func _aim() -> void:
+	if !self.is_reloading:
+		$Hand/Weapon.look_at(get_global_mouse_position())
+
+func _handle_movement() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right")
