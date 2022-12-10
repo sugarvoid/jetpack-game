@@ -46,8 +46,13 @@ func _update_facing_dir(target: Vector2):
 			is_facing_right = true
 
 func _process(delta: float) -> void:
-	if self._jet_pack_heat == 30:
+	if self._jet_pack_heat == 30 && !self.is_overheated:
 		print('over heat mode')
+		self.is_overheated = true
+	
+	if self._jet_pack_heat == 0 && self.is_overheated:
+		self.is_overheated = false
+		print('over heat mode over')
 
 func _physics_process(delta: float) -> void:
 	self._aim()

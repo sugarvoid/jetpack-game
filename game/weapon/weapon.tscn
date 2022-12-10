@@ -25,11 +25,6 @@ visible = false
 position = Vector2(46.5, -0.5)
 shape = SubResource("RectangleShape2D_o0s1h")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(9.30469, -0.835938)
-rotation = -1.5708
-target_position = Vector2(-2.08616e-06, 47)
-
 [node name="Reticle" type="Sprite2D" parent="."]
 position = Vector2(54, -1)
 scale = Vector2(0.5, 0.5)

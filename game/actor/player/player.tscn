@@ -6,35 +6,35 @@
 [ext_resource type="PackedScene" uid="uid://dhw72oqsqqh2q" path="res://game/weapon/weapon.tscn" id="3_s7vqm"]
 [ext_resource type="Texture2D" uid="uid://dnyitpxrpborr" path="res://game/actor/player/jetpack.png" id="4_gj5t7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8xjh4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hsta"]
 atlas = ExtResource("2_fu8pl")
 region = Rect2(0, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d8nav"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_657g1"]
 atlas = ExtResource("2_fu8pl")
 region = Rect2(8, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbcv4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h0cb"]
 atlas = ExtResource("2_fu8pl")
 region = Rect2(16, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_37a8y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_grajv"]
 atlas = ExtResource("2_fu8pl")
 region = Rect2(24, 0, 8, 8)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hv6i3"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3pwi4"]
 animations = [{
-"frames": [SubResource("AtlasTexture_8xjh4"), SubResource("AtlasTexture_d8nav"), SubResource("AtlasTexture_dbcv4"), SubResource("AtlasTexture_37a8y")],
+"frames": [SubResource("AtlasTexture_3hsta"), SubResource("AtlasTexture_657g1"), SubResource("AtlasTexture_8h0cb"), SubResource("AtlasTexture_grajv")],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3uwns"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wpwi"]
 radius = 4.0
 height = 12.0
 
-[sub_resource type="Animation" id="Animation_6v4gb"]
+[sub_resource type="Animation" id="Animation_5liqi"]
 resource_name = "reload"
 length = 0.25
 step = 0.05
@@ -51,9 +51,9 @@ tracks/0/keys = {
 "values": [0.0, -6.28319]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_au31m"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_is84s"]
 _data = {
-"reload": SubResource("Animation_6v4gb")
+"reload": SubResource("Animation_5liqi")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -63,7 +63,7 @@ script = ExtResource("1_luvoj")
 
 [node name="Flame" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3, 11)
-frames = SubResource("SpriteFrames_hv6i3")
+frames = SubResource("SpriteFrames_3pwi4")
 playing = true
 
 [node name="Jetpack" type="Sprite2D" parent="."]
@@ -74,7 +74,7 @@ texture = ExtResource("1_byush")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 3)
-shape = SubResource("CapsuleShape2D_3uwns")
+shape = SubResource("CapsuleShape2D_0wpwi")
 
 [node name="Hand" type="Marker2D" parent="."]
 position = Vector2(2, 4)
@@ -83,16 +83,8 @@ position = Vector2(2, 4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_au31m")
+"": SubResource("AnimationLibrary_is84s")
 }
-
-[node name="Label" type="Label" parent="."]
-offset_left = -6.0
-offset_top = -15.0
-offset_right = 34.0
-offset_bottom = 11.0
-scale = Vector2(0.4, 0.4)
-text = "000"
 
 [node name="JetpackCooldown" type="Timer" parent="."]
 
