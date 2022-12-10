@@ -65,3 +65,7 @@ position = Vector2(295, 157)
 position = Vector2(175, 158)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_e1nar")]
+
+[node name="TmrLevelStart" type="Timer" parent="."]
+
+[node name="TmrWaveDelay" type="Timer" parent="."]

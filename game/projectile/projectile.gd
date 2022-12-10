@@ -37,3 +37,5 @@ func _on_LifeTimer_timeout() -> void:
 func made_contact(thing: Node2D) -> void:
 	if thing.has_method("take_damage"):
 		thing.take_damage(self.damage_given)
+	else:
+		self.queue_free()

@@ -14,6 +14,10 @@ var current_level_number: int
 var current_level: Level
 var player: Player
 
+var player_lives: int
+var player_score: int
+
+
 func _ready() -> void:
 	self.current_level_number = 1
 	self.current_level = self._load_level(current_level_number)
@@ -56,4 +60,8 @@ func _add_projectile(weapon: Weapon) -> void:
 	projectile_manager.add_player_bullet_to_screen(weapon)
 
 func _on_level_completion() -> void:
+	# unload current
+	# load next one
+	self.current_level_number += 1
+	self.hud.update_level(current_level_number)
 	print('level is done')

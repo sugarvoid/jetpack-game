@@ -3,9 +3,13 @@ extends Node2D
 
 signal on_done
 signal all_dead
-signal wave_complete
+signal wave_completed
+signal level_completed
 
 var tiltemap: TileMap
+
+@onready var tmr_level_start: Timer = get_node("TmrLevelStart")
+@onready var tmr_wave_delay: Timer = get_node("TmrWaveDelay")
 
 @onready var player_spawn_point: Marker2D = get_node("PlayerSpawn")
 @onready var enemy_container: Node2D = get_node("EnemyContainer")
@@ -25,12 +29,15 @@ const level_enemies: Array[Array] = [
 	]
 ]
 
-var wave: int = 0 
+var current_wave: int = 0
+var total_waves: int = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print('level is ready!!!')
 	self.spawn_mob(level_enemies[0][0], $EnemySpawnPoints/G0.global_position )
+	self.spawn_mob(level_enemies[0][0], $EnemySpawnPoints/G2.global_position )
+	self.spawn_mob(level_enemies[0][0], $EnemySpawnPoints/G1.global_position )
 
 func get_mob_count() -> int:
 	return self.enemy_container.get_child_count()
@@ -43,6 +50,9 @@ func _check_for_completion() -> void:
 		print('all dead signal')
 		self.emit_signal("all_dead")
 
+func start_wave(wave_n: int) -> void:
+	print(str('starting wave ', wave_n))
+	pass
 
 func spawn_mob(e_type: String, spwan_loc: Vector2) -> void:
 	var new_e: Enemy = load(e_type).instantiate()
