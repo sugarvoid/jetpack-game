@@ -63,3 +63,9 @@ func spawn_mob(e_type: String, spwan_loc: Vector2) -> void:
 func remove_mob(e: Enemy) -> void:
 	self.enemy_container.remove_child(e)
 	_check_for_completion()
+
+func _on_wave_completed() -> void:
+	if self.current_wave < self.total_waves:
+		self.emit_signal("wave_completed")
+	else:
+		self.emit_signal("level_completed")

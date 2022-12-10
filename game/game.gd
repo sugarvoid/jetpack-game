@@ -42,7 +42,7 @@ func _start_level(level) -> void:
 
 func _load_level(lvl_num: int) -> Level:
 	var level: Level = load(_get_level_path_string(lvl_num)).instantiate()
-	level.all_dead.connect(self._on_level_completion)
+	level.level_completed.connect(self._on_level_completion)
 	self.add_child(level)
 	return level
 
