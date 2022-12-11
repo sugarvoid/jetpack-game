@@ -32,6 +32,7 @@ func _ready() -> void:
 	self.hud.update_level(current_level_number)
 	
 	self.player.request_bullet.connect(self._add_projectile)
+	self.hud.update_heat_high_value()
 
 
 func _physics_process(delta: float) -> void:

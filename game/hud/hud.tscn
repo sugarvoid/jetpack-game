@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://xipsfofahwd0"]
+[gd_scene load_steps=5 format=3 uid="uid://xipsfofahwd0"]
 
 [ext_resource type="Script" path="res://game/hud/hud.gd" id="1_6u4j5"]
+[ext_resource type="Texture2D" uid="uid://88uqddp661ix" path="res://game/hud/heat_bar.png" id="2_ryjou"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41gl6"]
+atlas = ExtResource("2_ryjou")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfnjy"]
+atlas = ExtResource("2_ryjou")
+region = Rect2(0, 0, 8, 8)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_6u4j5")
@@ -26,7 +35,8 @@ offset_right = 353.0
 offset_bottom = 29.0
 text = "Lives: ooo"
 
-[node name="PlayerHeatBar" type="ProgressBar" parent="."]
+[node name="PlayerHeatBar" type="TextureProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.596078)
 offset_left = 343.0
 offset_top = 86.0
 offset_right = 356.0
@@ -34,4 +44,6 @@ offset_bottom = 193.0
 step = 0.5
 value = 12.5
 fill_mode = 3
-show_percentage = false
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_41gl6")
+texture_progress = SubResource("AtlasTexture_kfnjy")
