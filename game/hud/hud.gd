@@ -6,6 +6,9 @@ extends CanvasLayer
 @onready var lbl_level: Label = get_node("LblLevel")
 @onready var pgb_player_heat: TextureProgressBar = get_node("PlayerHeatBar")
 
+const RED_REGION: Rect2 = Rect2(8,0,8,8)
+const GREEN_REGION: Rect2 = Rect2(0,0,8,8)
+
 var heat_high_value: float
 
 func _ready() -> void:
@@ -20,19 +23,15 @@ func update_heat_high_value() -> void:
 func _process(delta: float) -> void:
 	print(pgb_player_heat.max_value)
 	if pgb_player_heat.value >= self.heat_high_value:
-		self.pgb_player_heat.texture_progress.set_region(Rect2(8,0,8,8))
+		_change_heat_bar_color(RED_REGION)
 	else:
-		self.pgb_player_heat.texture_progress.set_region(Rect2(0,0,8,8))
+		_change_heat_bar_color(GREEN_REGION)
 
 func _get_percent_of_float(f: float, percent: float) -> float:
 	return (percent / 100) * f
 
-func _texture_to_red() -> void:
-	# Rect2(0, 0, 0, 0)
-	# green = (0,0,8,8)
-	# red = (8,0,8,8)
-	print(self.pgb_player_heat.texture_progress.get_region())
-	self.pgb_player_heat.texture_progress.set_region(Rect2(8,0,8,8))
+func _change_heat_bar_color(region: Rect2) -> void:
+	self.pgb_player_heat.texture_progress.set_region(region)
 
 
 func update_score(num: int) -> void:
