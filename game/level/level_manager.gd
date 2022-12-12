@@ -8,6 +8,7 @@ signal level_completed(lvl: int)
 
 @onready var tmr_level_start: Timer = get_node("TmrLevelStart")
 @onready var tmr_wave_delay: Timer = get_node("TmrWaveDelay")
+@onready var ani_player: AnimationPlayer = get_node("AnimationPlayer")
 
 @onready var enemy_container: Node2D = get_node("EnemyContainer")
 
@@ -68,8 +69,9 @@ func _check_for_completion() -> void:
 
 func start_wave(wave_n: int) -> void:
 	print("starting wave timer...")
-	self.tmr_wave_delay.start(4)
-	await self.tmr_wave_delay.timeout
+	self.ani_player.play("countdown")
+	# self.tmr_wave_delay.start(4)
+	await self.ani_player.animation_finished
 	print(str('starting wave ', wave_n))
 	pass
 
