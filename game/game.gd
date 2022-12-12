@@ -45,8 +45,8 @@ func _start_level(level) -> void:
 # Might rename to _restart_game()
 func _start_game() -> void:
 	self.current_level = 1
-	level_manager.load_mobs(current_level)
-	level_manager.start_wave(current_level)
+	# level_manager.load_mobs(current_level)
+	level_manager.start_level(current_level)
 
 #func _load_level(lvl_num: int) -> Level:
 #	var level: Level = load(_get_level_path_string(lvl_num)).instantiate()
@@ -72,7 +72,7 @@ func _on_level_completion(lvl: int) -> void:
 	# unload current
 	# load next one
 	self.current_level_number += 1
-	self.hud.update_level(current_level)
+	self.hud.update_level(level_manager.get_current_level())
 	print(str('level ', lvl, 'is done.'))
 
 func _on_wave_completed(wave: int) -> void:

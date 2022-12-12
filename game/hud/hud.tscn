@@ -57,7 +57,6 @@ offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="PauseScreen"]
 modulate = Color(1, 1, 1, 0.686275)
-layout_mode = 0
 offset_left = -6.0
 offset_top = -4.0
 offset_right = 363.0
@@ -65,7 +64,6 @@ offset_bottom = 204.0
 color = Color(0.447059, 0.52549, 0.690196, 1)
 
 [node name="Label" type="Label" parent="PauseScreen"]
-layout_mode = 0
 offset_left = 146.0
 offset_top = 75.0
 offset_right = 208.0
@@ -80,7 +78,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="TopInfo"]
-layout_mode = 0
 offset_right = 359.0
 offset_bottom = 14.0
 color = Color(0, 0, 0, 1)
