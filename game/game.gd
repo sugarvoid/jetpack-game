@@ -45,6 +45,7 @@ func _start_level(level) -> void:
 # Might rename to _restart_game()
 func _start_game() -> void:
 	self.current_level = 1
+	level_manager.load_mobs(current_level)
 
 #func _load_level(lvl_num: int) -> Level:
 #	var level: Level = load(_get_level_path_string(lvl_num)).instantiate()

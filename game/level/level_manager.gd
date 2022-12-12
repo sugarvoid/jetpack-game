@@ -6,62 +6,47 @@ signal all_dead
 signal wave_completed
 signal level_completed
 
-var current_level: int
-var current_tiltemap: TileMap
-var _player_spawn_point: Vector2
+@onready var tmr_level_start: Timer = get_node("TmrLevelStart")
+@onready var tmr_wave_delay: Timer = get_node("TmrWaveDelay")
 
-
-
+@onready var enemy_container: Node2D = get_node("EnemyContainer")
 
 const LEVEL_DATA: Array[Dictionary] = [
 	{
 		"level": 1,
 		"tilemap_path": "res://game/level/tilemap/level_1.tscn",
 		"player_spawn_pos": Vector2(52,90),
-		"enemies": [
+		"enemies": [ # Enemies that will appear in this level
 			"res://game/actor/enemy/enemy.tscn",
 			"mob2",
 			"mob3",
 		],
-		"enemy_spawn_pos": [
-			Vector2(0,0),
-			
-		],
-		
+		"enemy_spawn_pos": {
+			"G0": Vector2(48,156),
+			"G1": Vector2(175,158),
+			"G2": Vector2(295,157),
+		},
 		
 	}
 ]
 
-@onready var tmr_level_start: Timer = get_node("TmrLevelStart")
-@onready var tmr_wave_delay: Timer = get_node("TmrWaveDelay")
-
-@onready var player_spawn_point: Marker2D = get_node("PlayerSpawn")
-@onready var enemy_container: Node2D = get_node("EnemyContainer")
-
-
-# Enemies that will appear in this level
-const level_enemies: Array[Array] = [
-	[
-		"res://game/actor/enemy/enemy.tscn",
-		2,
-		3
-	],
-	[
-		1,
-		4,
-		5,
-	]
-]
-
+var current_level: int
+var current_tiltemap: TileMap
+var _player_spawn_point: Vector2
 var current_wave: int = 0
 var total_waves: int = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print('level is ready!!!')
-	self.spawn_mob(level_enemies[0][0], $EnemySpawnPoints/G0.global_position )
-	self.spawn_mob(level_enemies[0][0], $EnemySpawnPoints/G2.global_position )
-	self.spawn_mob(level_enemies[0][0], $EnemySpawnPoints/G1.global_position )
+	#Load level
+	print(str('level ', self.current_level, ' is ready.'))
+		
+
+
+func load_mobs(lvl_num: int = 0, wave_num: int = 0) -> void:
+	print(current_level)
+	self.spawn_mob(LEVEL_DATA[(lvl_num- 1)]["enemies"][0], LEVEL_DATA[(lvl_num -1)]["enemy_spawn_pos"]["G0"])
+	
 
 func set_current_level(lvl: int) -> void:
 	self.current_level = lvl
