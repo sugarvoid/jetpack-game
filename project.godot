@@ -30,9 +30,9 @@ _global_script_classes=[{
 "path": "res://game/hud/hud.gd"
 }, {
 "base": "Node2D",
-"class": &"Level",
+"class": &"Level_Manager",
 "language": &"GDScript",
-"path": "res://game/level/level.gd"
+"path": "res://game/level/level_manager.gd"
 }, {
 "base": "Actor",
 "class": &"Player",
@@ -59,7 +59,7 @@ _global_script_class_icons={
 "Enemy": "",
 "EnemySpawner": "",
 "HUD": "",
-"Level": "",
+"Level_Manager": "",
 "Player": "",
 "Projectile": "",
 "ProjectileManager": "",

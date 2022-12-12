@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://y8fujy7xnky0"]
+[gd_scene load_steps=4 format=3 uid="uid://y8fujy7xnky0"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_rghpk"]
 [ext_resource type="PackedScene" uid="uid://xipsfofahwd0" path="res://game/hud/hud.tscn" id="2_5ubfb"]
+[ext_resource type="PackedScene" path="res://game/level/level_manager.tscn" id="3_jj57u"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_rghpk")
 
 [node name="HUD" parent="." instance=ExtResource("2_5ubfb")]
+
+[node name="Level_Manager" parent="." instance=ExtResource("3_jj57u")]

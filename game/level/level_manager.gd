@@ -1,4 +1,4 @@
-class_name Level
+class_name Level_Manager
 extends Node2D
 
 signal on_done
@@ -6,7 +6,31 @@ signal all_dead
 signal wave_completed
 signal level_completed
 
-var tiltemap: TileMap
+var current_level: int
+var current_tiltemap: TileMap
+var _player_spawn_point: Vector2
+
+
+
+
+const LEVEL_DATA: Array[Dictionary] = [
+	{
+		"level": 1,
+		"tilemap_path": "res://game/level/tilemap/level_1.tscn",
+		"player_spawn_pos": Vector2(52,90),
+		"enemies": [
+			"res://game/actor/enemy/enemy.tscn",
+			"mob2",
+			"mob3",
+		],
+		"enemy_spawn_pos": [
+			Vector2(0,0),
+			
+		],
+		
+		
+	}
+]
 
 @onready var tmr_level_start: Timer = get_node("TmrLevelStart")
 @onready var tmr_wave_delay: Timer = get_node("TmrWaveDelay")
@@ -39,11 +63,22 @@ func _ready() -> void:
 	self.spawn_mob(level_enemies[0][0], $EnemySpawnPoints/G2.global_position )
 	self.spawn_mob(level_enemies[0][0], $EnemySpawnPoints/G1.global_position )
 
+func set_current_level(lvl: int) -> void:
+	self.current_level = lvl
+
+func load_level(lvl_num: int) -> void:
+	print(str("Loading level ", lvl_num, "."))
+	_load_level_tilemap(lvl_num)
+
 func get_mob_count() -> int:
 	return self.enemy_container.get_child_count()
 
 func get_player_start_pos() -> Vector2:
-	return self.player_spawn_point.global_position
+	return LEVEL_DATA[self.current_level - 1].player_spawn_pos
+
+func _load_level_tilemap(level: int) -> void:
+	var tilemap: TileMap = load(LEVEL_DATA[(level - 1)].tilemap_path).instantiate()
+	$TilemapHolder.add_child(tilemap)
 
 func _check_for_completion() -> void:
 	if self.enemy_container.get_child_count() == 0:

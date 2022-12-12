@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://esea14s4ol88"]
+
+[ext_resource type="Script" path="res://game/level/level_manager.gd" id="1_qwh27"]
+[ext_resource type="PackedScene" uid="uid://b0646dxv3lqfi" path="res://game/manager/enemy_spawner/enemy_spawner.tscn" id="2_n6omx"]
+
+[node name="Level_Manager" type="Node2D"]
+script = ExtResource("1_qwh27")
+
+[node name="TilemapHolder" type="Node2D" parent="."]
+
+[node name="PlayerSpawnTESTNODE" type="Marker2D" parent="."]
+position = Vector2(52, 90)
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="EnemySpawnPoints" type="Node2D" parent="."]
+
+[node name="A0" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(44, 23)
+
+[node name="A1" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(285, 27)
+
+[node name="G0" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(48, 156)
+
+[node name="G2" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(295, 157)
+
+[node name="G1" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(175, 158)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("2_n6omx")]
+
+[node name="TmrLevelStart" type="Timer" parent="."]
+
+[node name="TmrWaveDelay" type="Timer" parent="."]
