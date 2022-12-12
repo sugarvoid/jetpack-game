@@ -10,7 +10,10 @@ const RED_REGION: Rect2 = Rect2(8,0,8,8)
 const GREEN_REGION: Rect2 = Rect2(0,0,8,8)
 
 var heat_high_value: float
+var is_paused: bool = false
 
+func _ready() -> void:
+	_toggle_mouse_mode()
 
 func update_heat_high_value() -> void:
 	var bar_max = self.pgb_player_heat.max_value
@@ -18,6 +21,27 @@ func update_heat_high_value() -> void:
 
 func _process(delta: float) -> void:
 	_update_heat_bar_color()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_released("ui_cancel"):
+		self.is_paused = !self.is_paused
+		pause_game(self.is_paused)
+
+
+func _toggle_mouse_mode() -> void:
+	if Input.mouse_mode == Input.MOUSE_MODE_CONFINED_HIDDEN:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	# Input.set_custom_mouse_cursor(preload("res://game/hud/1x1.png"))
+
+func pause_game(paused: bool) -> void:
+	
+	_toggle_mouse_mode()
+	print(str('passed in ', paused))
+	$PauseScreen.visible = paused
+	get_tree().paused = paused
+	print('Paused Game')
 
 func _update_heat_bar_color() -> void:
 	if pgb_player_heat.value >= self.heat_high_value:

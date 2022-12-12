@@ -3,8 +3,8 @@ extends Node2D
 
 signal on_done
 signal all_dead
-signal wave_completed
-signal level_completed
+signal wave_completed(wave: int)
+signal level_completed(lvl: int)
 
 @onready var tmr_level_start: Timer = get_node("TmrLevelStart")
 @onready var tmr_wave_delay: Timer = get_node("TmrWaveDelay")
@@ -36,17 +36,13 @@ var _player_spawn_point: Vector2
 var current_wave: int = 0
 var total_waves: int = 2
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Load level
 	print(str('level ', self.current_level, ' is ready.'))
-		
-
 
 func load_mobs(lvl_num: int = 0, wave_num: int = 0) -> void:
 	print(current_level)
 	self.spawn_mob(LEVEL_DATA[(lvl_num- 1)]["enemies"][0], LEVEL_DATA[(lvl_num -1)]["enemy_spawn_pos"]["G0"])
-	
 
 func set_current_level(lvl: int) -> void:
 	self.current_level = lvl
@@ -71,6 +67,9 @@ func _check_for_completion() -> void:
 		self.emit_signal("all_dead")
 
 func start_wave(wave_n: int) -> void:
+	print("starting wave timer...")
+	self.tmr_wave_delay.start(4)
+	await self.tmr_wave_delay.timeout
 	print(str('starting wave ', wave_n))
 	pass
 
@@ -86,6 +85,6 @@ func remove_mob(e: Enemy) -> void:
 
 func _on_wave_completed() -> void:
 	if self.current_wave < self.total_waves:
-		self.emit_signal("wave_completed")
+		self.emit_signal("wave_completed", current_wave)
 	else:
-		self.emit_signal("level_completed")
+		self.emit_signal("level_completed", current_level)

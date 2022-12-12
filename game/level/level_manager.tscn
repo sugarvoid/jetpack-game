@@ -6,6 +6,19 @@
 [node name="Level_Manager" type="Node2D"]
 script = ExtResource("1_qwh27")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 151.0
+offset_top = 29.0
+offset_right = 204.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 42
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TilemapHolder" type="Node2D" parent="."]
 
 [node name="PlayerSpawnTESTNODE" type="Marker2D" parent="."]

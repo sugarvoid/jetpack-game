@@ -24,14 +24,14 @@ text = "Score: 000"
 [node name="LblLevel" type="Label" parent="."]
 offset_left = 142.0
 offset_top = 2.0
-offset_right = 221.0
+offset_right = 209.0
 offset_bottom = 28.0
 text = "Level: 00"
 
 [node name="LblLives" type="Label" parent="."]
 offset_left = 274.0
 offset_top = 3.0
-offset_right = 353.0
+offset_right = 351.0
 offset_bottom = 29.0
 text = "Lives: ooo"
 
@@ -47,3 +47,44 @@ fill_mode = 3
 nine_patch_stretch = true
 texture_under = SubResource("AtlasTexture_41gl6")
 texture_progress = SubResource("AtlasTexture_kfnjy")
+
+[node name="PauseScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="PauseScreen"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_left = -6.0
+offset_top = -4.0
+offset_right = 363.0
+offset_bottom = 204.0
+color = Color(0.447059, 0.52549, 0.690196, 1)
+
+[node name="Label" type="Label" parent="PauseScreen"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 75.0
+offset_right = 208.0
+offset_bottom = 101.0
+text = "PAUSED"
+
+[node name="TopInfo" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="TopInfo"]
+layout_mode = 0
+offset_right = 359.0
+offset_bottom = 14.0
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInfo"]
+offset_right = 360.0
+offset_bottom = 22.0

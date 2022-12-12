@@ -8,5 +8,6 @@
 script = ExtResource("1_rghpk")
 
 [node name="HUD" parent="." instance=ExtResource("2_5ubfb")]
+process_mode = 3
 
 [node name="Level_Manager" parent="." instance=ExtResource("3_jj57u")]
