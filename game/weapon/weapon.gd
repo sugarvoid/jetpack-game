@@ -20,6 +20,7 @@ enum WEAPON_SUBTYPE {
 }
 
 @onready var muzzle = get_node("Muzzle")
+@onready var sprite_reticle: Sprite2D = $Reticle
 
 var weapon_ID: String
 var weapon_type: int
@@ -51,6 +52,9 @@ func primary_action() -> void:
 	
 func secondary_action() -> void:
 	assert(false, "Overide method")
+
+func toggle_reticle() -> void:
+	self.sprite_reticle.visible = !self.sprite_reticle.visible
 
 func set_damage_amount(n: int) -> void:
 	self.damage = n

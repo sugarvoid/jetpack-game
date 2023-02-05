@@ -101,6 +101,7 @@ func _handle_movement() -> void:
 
 func _reload() -> void:
 	self.is_reloading = true
+	weapon.toggle_reticle()
 	$AnimationPlayer.play("reload")
 	self.weapon.reload()
 	
@@ -117,6 +118,7 @@ func _get_damage_amount() -> int:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "reload":
 		self.is_reloading = false
+		weapon.toggle_reticle()
 
 func get_jetpack_heat() -> float:
 	return snapped(self._jet_pack_heat, 0.1)
