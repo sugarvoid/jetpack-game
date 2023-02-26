@@ -13,7 +13,8 @@ var heat_high_value: float
 var is_paused: bool = false
 
 func _ready() -> void:
-	_toggle_mouse_mode()
+	pass
+	Input.set_custom_mouse_cursor(preload("res://game/weapon/reticle.png"))
 
 func update_heat_high_value() -> void:
 	var bar_max = self.pgb_player_heat.max_value
@@ -33,11 +34,11 @@ func _toggle_mouse_mode() -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
-	# Input.set_custom_mouse_cursor(preload("res://game/hud/1x1.png"))
+	Input.set_custom_mouse_cursor(preload("res://game/weapon/reticle.png"))
 
 func pause_game(paused: bool) -> void:
 	
-	_toggle_mouse_mode()
+	### _toggle_mouse_mode()
 	print(str('passed in ', paused))
 	$PauseScreen.visible = paused
 	get_tree().paused = paused

@@ -20,7 +20,6 @@ enum WEAPON_SUBTYPE {
 }
 
 @onready var muzzle = get_node("Muzzle")
-@onready var sprite_reticle: Sprite2D = $Reticle
 
 var weapon_ID: String
 var weapon_type: int
@@ -49,15 +48,15 @@ func _ready() -> void:
 
 func primary_action() -> void:
 	assert(false, "Overide method")
-	
+
+
 func secondary_action() -> void:
 	assert(false, "Overide method")
 
-func toggle_reticle() -> void:
-	self.sprite_reticle.visible = !self.sprite_reticle.visible
 
-func set_damage_amount(n: int) -> void:
-	self.damage = n
+func set_damage_amount(d: int) -> void:
+	self.damage = d
+
 
 func fire_bullet() -> void:
 	if bullets_left > 0:
@@ -65,6 +64,7 @@ func fire_bullet() -> void:
 		self.bullets_left -= 1
 		if self.bullets_left == 0:
 			return
+
 
 func reload() -> void:
 	self.bullets_left = self.magazine_size

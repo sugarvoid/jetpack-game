@@ -21,7 +21,6 @@ func _ready() -> void:
 	self.projectile_manager = preload("res://game/manager/projectile_manager/projectile_manager.tscn").instantiate()
 	self.add_child(projectile_manager)
 	self.add_player_to_level()
-	print(self.hud)
 	self.hud.update_heat_bar_max_value(self.player.get_jetpack_max_heat())
 	self.hud.update_level(current_level)
 	
