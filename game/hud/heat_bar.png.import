@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/heat_bar.png-ecd690295ca64506a268f13f4d1de745
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false
