@@ -19,7 +19,7 @@ var is_overheated: bool = false
 
 func _ready() -> void:
 	self.jump_velocity = -40
-	self.speed = 100
+	self.speed = 120
 	self.weapon.can_shoot_bullet.connect(self._fire_weapon)
 
 
@@ -67,10 +67,12 @@ func _physics_process(delta: float) -> void:
 		self.spr_flame.visible = false
 		self.is_grounded = false
 		self.velocity.y = min(velocity.y + 4, gravity) 
+		$Hand/Weapon.spread = 0.08
 
 	else:
 		self.is_grounded = true
 		self.emit_signal("landed")
+		$Hand/Weapon.spread = 0.11
 
 	# Handle Jump.
 	if Input.is_action_pressed("jump") and !self.is_overheated:
